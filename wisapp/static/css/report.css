@@ -1,0 +1,99 @@
+  body {
+      font-weight: 400;
+      font-size: 12px;
+      font-family: Chandas, Arial;
+  }
+
+  .logo {
+    font-size: 20px; 
+    letter-spacing: 5px; 
+    font-weight: bold;
+  }
+
+.outer{
+  display: table;
+  margin: 0 auto;
+  width: 90%;
+}
+
+li{
+	display: inline;
+	list-style: none;
+	margin-right: 100px;
+}
+
+#inner {
+  display: table;
+  float: left;
+  text-align: center;
+  margin-left: -60px;
+}
+
+
+.item_r{
+  width:70px;
+  display:inline-block;
+  margin-bottom: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 14px;
+  font-size: 10px;
+}
+
+
+th{
+  color: black;
+  border-bottom: 2px solid black;
+  font-weight: normal; 
+  text-align: center; 
+  padding: 2px !important;
+}
+
+.headers {
+  height: 10px; 
+  font-size: 10px;
+  font-weight: bold;
+
+}
+
+.brand {
+  margin-bottom: -15px; 
+  font-size: 14px !important;
+}
+
+
+.brand-subtitle {
+  font-size: 11px;
+  margin: 5 -15px;
+}
+
+.report-title {
+  font-size: 12px;
+  margin-top: -10px
+}
+
+.passport {
+  width: 30px;
+  margin-top: 10px;
+}
+.row {
+  height: 8px;
+}
+
+.row-data {
+  text-align: center;
+}
+.summary {
+  width: 300px; 
+  margin-left: 50px; 
+  margin-top: 50px;
+}

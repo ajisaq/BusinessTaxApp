@@ -1,0 +1,51 @@
+ {% load humanize %}
+ <table class="table table-bordered table-responsive-md table-striped text-center">
+    <tr class="mdb-color darken-3 white-text">
+      <th class="text-center">#</th>
+       <th class="text-center">Fullname</th>
+       <th class="text-center">Picture</th>
+       <th class="text-center">Phone No.</th>
+       <th class="text-center">Workplace</th>
+       <th class="text-center">Department</th>
+       <th class="text-center">Employed</th>
+       <th class="text-center">Retirement In</th>
+       <th class="text-center">Action</th>
+    </tr>
+    {% for staff in staff_list %}
+    <tr>
+      <td class="pt-3-half text-center" contenteditable="false">
+          <a href="">{{ forloop.counter }}</a>
+       </td>
+       <td class="pt-3-half text-center" name="{{ staff.first_name }}" contenteditable="false">
+          <a href="#">{{ staff.get_full_name }}</a>
+       </td>
+       <td class="pt-3-half" name="{{ staff.first_name }}" contenteditable="false">
+          <img width="50px" src="{{ staff.get_picture }}">
+       </td>
+       <td class="pt-3-half" contenteditable="false">{{ staff.phone_number }}</td>
+       <td class="pt-3-half" contenteditable="false">{{ staff.place_of_work }}</td>
+       <td class="pt-3-half" contenteditable="false">{{ staff.department }}</td>
+       <td class="pt-3-half" contenteditable="false">{{ staff.date_of_employment|naturalday }}</td>
+       <td class="pt-3-half" contenteditable="false">{{ staff.date_of_retirement|naturaltime }}</td>
+       <td class="pt-3-half" contenteditable="false">
+          <a href="{# {% url 'profile' user_id=staff.id %} #}" title="view" class="blue-text"><i class="fa fa-user"></i></a>
+          <a href="{# {% url 'edit_student' id=staff.id %} #}" title="edit" class="teal-text"><i class="fa fa-pen"></i></a>
+          <a id="del_staff" target_student="{# {% url 'delete_staff' id=staff.pk %} #}" title="delete" class="del_student red-text"><i class="fa fa-times"></i></a>
+       </td>
+    </tr>
+    {% empty %}
+    <tr>
+       <td colspan=7"">No data available</td>
+    </tr>
+    {% endfor %}
+ </table>
+ <table>
+  <tr>
+    <td>
+      <fieldset>
+          <legend style="font-size: 15px">Summary:</legend>
+          <font style="font-size: 13px">Number of staff: {{ staff_list.count }} ({{ staff_list.count|apnumber|title }})</font>
+        </fieldset>
+    </td>
+  </tr>
+ </table>

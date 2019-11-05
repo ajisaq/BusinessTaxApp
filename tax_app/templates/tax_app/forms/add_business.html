@@ -1,0 +1,97 @@
+{% extends "./../base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="row" style="margin-bottom: 25px">
+    <div class="col-12 col-md-12">
+        <div class="card redial-border-light redial-shadow">
+<div class="card-body" style="overflow: visible;">
+                                        <h6 class="header-title pl-3 redial-relative">{% if edit %}Edit{% endif %}{% if not edit %}Add{% endif %} Business</h6>
+                                        <form method="POST" action="{% if edit %}/update/business/{% endif %}{% if not edit %}/add/business/{% endif %}">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Business Name</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Enter Name"
+                                                        name="name" 
+                                                        value="{{business.name}}">
+                                                        <input type="hidden" class="form-control" 
+                                                        name="id" 
+                                                        value="{{business.id}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">TIN</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Enter TIN"
+                                                        name="tin" 
+                                                        value="{{business.tin}}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Location</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="location">
+                                                        {% for location in locations %}
+                                                            <option {% if location.name == business.location %}selected{% endif %}>{{location.name}}</option>
+                                                        {% endfor %}
+                                                        }
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Category</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <!--
+                                                        <input type="text" class="form-control" placeholder="Enter Category"
+                                                        value="{{business.category}}">-->
+
+                                                        <select class="form-control" name="category">
+                                                        {% for b_c in business_category %}
+                                                            <option {% if b_c == business.category %}selected{% endif %} value="{{b_c.id}}">{{b_c.name}}</option>
+                                                        {% endfor %}
+                                                        }
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Payment Status</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Enter Payment Status"
+                                                        name="payment_status" 
+                                                        value="{{business.payment_status}}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3"></label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <center>
+                                                            <input type="submit" name="submit" class="btn btn-primary">
+                                                        </center>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+{% endblock main_content %}

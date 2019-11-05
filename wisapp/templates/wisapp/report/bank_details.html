@@ -1,0 +1,58 @@
+{% load static i18n humanize %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/report.min.css' %}">
+  </head>
+  <body>
+    <div class="outer">
+      <div class="logo">
+        <span class="rletter">W</span>
+        <span class="">R</span>
+        <span class="rletter">M</span>
+        <span class="">S</span>
+      </div>
+      <div>
+        <center>
+          <p class="brand">AJISAQ LIMITED</p>
+          <p class="brand-subtitle">Workers Record Management System</p>
+          <p class="report-title">BANK DETAILS FOR STAFF OF {{ department|upper }} DEPARTMENT</p>
+        </center>
+      </div>
+    </div>
+      <div class='wrapper'>
+        <table>
+          <tr class="mdb-color darken-3 headers white-text">
+            <th>#</th>
+             <th>Fullname</th>
+             <th>Bank Name</th>
+             <th>Account Number</th>
+             <th>Account Name</th>
+             <th>NIMC</th>
+          </tr>
+          {% for staff in staff_list %}
+            <tr class="row">
+            	<td class="row-data">{{ forloop.counter }}</td>
+            	<td class="row-data">{{ staff.get_full_name }}</td>
+            	<td class="row-data">{{ staff.bank_name }}</td>
+              <td class="row-data">{{ staff.account_name }}</td>
+              <td class="row-data">{{ staff.account_number }}</td>
+              <td class="row-data">{{ staff.nimc }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="8">
+                No staff is found in this department
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+    <div class="summary">
+      <legend>Summary:</legend>
+        <span>Total number of Staff: <b>{{ staff_list.count }}</b></span><br>
+        <span>Number of retired staff: <b>{{ staff_list.count }}</b></span>
+    </div>
+    <p style="page-break-after: always"/>
+  </body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:58 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Redial</title>
+        <link rel="icon" href="{% static 'dist/images/favicon.ico' %}" />
+
+        <!--Plugin CSS-->
+        <link href="{% static 'dist/css/plugins.min.css' %}" rel="stylesheet">
+
+        <!--main Css-->
+        <link href="{% static 'dist/css/main.min.css' %}" rel="stylesheet">
+
+        <!-- font awesome-->
+        <link rel="stylesheet" href="{% static 'font_awesome/css/font-awesome.min.css' %}">
+    </head>
+    <body>
+        <!-- header-->
+        <div id="header-fix" class="header py-4 py-lg-2 fixed-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-xl-2 align-self-center">
+                        <div class="site-logo">
+                            <a href="index-2.html"><img src="dist/images/logo-v1.png" alt="" class="img-fluid" /></a>
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn bg-transparent float-right">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 align-self-center d-none d-lg-inline-block">
+                        <!--<form>
+                            <div class="form-group mb-0 redial-relative">
+                                <input type="text" class="form-control redial-rounded-circle-50 border-0" placeholder="Search" />
+                                <div class="btn-search">
+                                    <a href="#" class="redial-light"><i class="lnr lnr-magnifier redial-absolute redial-right-20"></i></a>
+                                </div>
+                            </div>
+                        </form>-->
+                        <span style="color: white"><b>Tax Module Prototype</b></span>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-7 d-none d-lg-inline-block">
+                        <nav class="navbar navbar-expand-lg p-0">
+                            <ul class="navbar-nav notification ml-auto d-inline-flex">
+                                <li class="nav-item dropdown user-profile align-self-center">
+                                    <a  class="nav-link" data-toggle="dropdown" aria-expanded="false"> 
+                                        <span class="float-right pl-3 text-white"><i class="fa fa-angle-down"></i></span>
+                                        <div class="media">
+                                            <img src="dist/images/author.jpg" alt="" class="d-flex mr-3 img-fluid redial-rounded-circle-50" width="45" />
+                                            <div class="media-body align-self-center">
+                                                <p class="mb-2 text-white text-uppercase font-weight-bold">{{user.first_name}} {{user.last_name}}</p>
+                                                <small class="redial-primary-light font-weight-bold text-white">{% if user.profile.is_tax_collector %} Tax Collector {% endif %} {% if user.profile.is_supervisor %} Supervisor {% endif %} {% if user.profile.is_admin %} Admin {% endif %}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu border-bottom-0 rounded-0 py-0">
+                                        <li><a class="dropdown-item py-2" href="/logout/"><i class="fa fa-sign-out pr-2"></i> logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End header-->
+
+        <!-- Main-content Top bar-->
+        <div class="redial-relative mt-80">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-2 align-self-center my-3 my-lg-0">
+                        <h6 class="text-uppercase redial-font-weight-700 redial-light mb-0 pl-2">Dashboard</h6>
+                    </div>
+                    <div class="col-12 col-md-4 align-self-center">
+                        <div class="float-sm-left float-none mb-4 mb-sm-0">
+                            <ol class="breadcrumb mb-0 bg-transparent redial-light">
+                                <li class="breadcrumb-item"><a href="#" class="redial-light">Home</a></li>
+                                {% for b in bd_cr %}
+                                <li class="breadcrumb-item"><a href="{{b.url}}" class="redial-light">{{b.name}}</a></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="clearfix d-none d-md-inline">
+                            <div class="float-sm-right float-none">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item h4 mb-0 redial-brd-right py-3 px-3 mr-0"><a href="#" class="redial-dark"><span class="lnr lnr-sync"></span></a></li>
+                                    <li class="list-inline-item px-3 mr-0"><small class="font-weight-bold">Language : </small></li>
+                                    <li class="list-inline-item mr-0 bg-transparent">
+                                        <select class="form-control bg-transparent">
+                                            <option>English</option>
+                                        </select>
+                                    </li>
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main-content Top bar-->
+
+        <!-- main-content-->
+        <div class="wrapper">
+            <nav id="sidebar" class="card redial-border-light px-2 mb-4">
+                <div class="sidebar-scrollarea">
+                    <ul class="metismenu list-unstyled mb-0" id="menu">
+                        <li><a href="/business/"><i class="icofont icofont-social-delicious pr-1"></i> Businesses</a></li>
+                        {% if user.profile.is_supervisor or user.profile.is_admin %}
+                        <li><a href="/location/"><i class="icofont icofont-database pr-1"></i> Locations</a></li>
+                        <li><a href="/supervisor/"><i class="icofont icofont-ui-user pr-1"></i> Supervisors</a></li>
+                        <li><a href="/business/category/"><i class="icofont icofont-file pr-1"></i> Business Categories</a></li>
+                        {% endif %}
+                        {% if user.profile.is_admin %}
+                        <li><a href="/administrator/"><i class="icofont icofont-ui-user pr-1"></i> Administrators</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            <div id="content">
+                <div class="row">
+                    <div class="col-12 col-sm-12">
+                        
+                                
+                            {% block main_content %}
+
+                            {% endblock main_content %}
+                               
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <!-- End main-content-->
+
+        <!-- Top To Bottom-->
+ <a href="#" class="scrollup text-center redial-bg-primary redial-rounded-circle-50"> 
+            <h4 class="text-white mb-0"><i class="icofont icofont-long-arrow-up"></i></h4>
+        </a>
+        <!-- End Top To Bottom-->
+
+        <!-- Chat-->
+        <div id="sidechat">
+            <!--
+             <a href="#" class="setting text-center redial-bg-primary d-none d-lg-block"> 
+                <h4 class="text-white mb-0"><i class="icofont icofont-gear"></i></h4>
+            </a>-->
+            <div class="sidbarchat">
+                <ul class="nav nav-tabs border-0 justify-content-lg-center my-3 my-lg-0 flex-column flex-sm-row" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link redial-light border-top-0 border-left-0 border-right-0 active pt-0" id="11-tab" data-toggle="tab" href="#11" role="tab" aria-controls="home" aria-selected="true">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link redial-light border-top-0 border-left-0 border-right-0 pt-0" id="21-tab" data-toggle="tab" href="#21" role="tab" aria-controls="profile" aria-selected="false">Todo</a>
+                    </li>
+                    
+                </ul>
+                <div class="tab-content py-4" id="mysideTabContent">
+                    <div class="tab-pane fade show active" id="11" role="tabpanel" aria-labelledby="11-tab">
+                        <ul class="nav flex-column" role="tablist">
+                                        <li class="nav-item redial-divider px-3">
+                                            <a class="nav-link active redial-light" data-toggle="tab" href="#tab1" role="tab" aria-selected="true">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author2.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Harry Jones</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item redial-divider px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab2" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author3.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Daniel Taylor</h6>
+                                                        Freelance Web Developer
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                        <li class="nav-item redial-divider px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab3" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Charlotte </h6>
+                                                        Co-Founder & CEO at Pi
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                        <li class="nav-item redial-divider px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab4" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author7.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Jack Sparrow</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                        <li class="nav-item redial-divider px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab5" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author6.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Bhaumik</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                        <li class="nav-item px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab6" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author8.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Wood Walton</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                         <li class="nav-item px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab6" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author8.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Wood Walton</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                         <li class="nav-item px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab6" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author8.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Wood Walton</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                         <li class="nav-item px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab6" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author8.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Wood Walton</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                         <li class="nav-item px-3">
+                                            <a class="nav-link redial-light" data-toggle="tab" href="#tab6" role="tab" aria-selected="false">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left py-3">
+                                                    <img class="img-fluid d-md-flex mr-sm-3 redial-rounded-circle-50" src="dist/images/author8.jpg" alt="">
+                                                    <div class="media-body align-self-center redial-line-height-1_5 mt-2 mt-sm-0">
+                                                        <h6 class="mb-1 redial-font-weight-800">Wood Walton</h6>
+                                                        Managing Partner at MDD
+                                                    </div>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                    </div>
+                    <div class="tab-pane fade" id="21" role="tabpanel" aria-labelledby="21-tab">
+                         <ul class="mb-0 list-unstyled inbox">
+
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="scheckbox12">
+                                                    <label for="scheckbox12" class="redial-dark redial-font-weight-600">John Smith</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Aug 10</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i> No Subject Lorem ipsum dolor sit amet </small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="scheckbox13">
+                                                    <label for="scheckbox13" class="redial-dark redial-font-weight-600">Lauren Boggs</label>
+                                                    <small class='float-right text-muted'> Nov 5</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Invite Lorem ipsum dolor sit amet</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="scheckbox14">
+                                                    <label for="scheckbox14" class="redial-dark redial-font-weight-600">Devid Taylor</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Jan 25</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Developemnt  Lorem ipsum dolor sit amet</small>
+                                                    
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="sscheckbox12">
+                                                    <label for="sscheckbox12" class="redial-dark redial-font-weight-600">John Smith</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Aug 10</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i> No Subject Lorem ipsum dolor sit amet </small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="sscheckbox13">
+                                                    <label for="sscheckbox13" class="redial-dark redial-font-weight-600">Lauren Boggs</label>
+                                                    <small class='float-right text-muted'> Nov 5</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Invite Lorem ipsum dolor sit amet</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="sscheckbox14">
+                                                    <label for="sscheckbox14" class="redial-dark redial-font-weight-600">Devid Taylor</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Jan 25</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Developemnt  Lorem ipsum dolor sit amet</small>
+                                                    
+                                                </div>
+                                            </a>
+                                        </li>
+                                         <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="ccheckbox14">
+                                                    <label for="ccheckbox14" class="redial-dark redial-font-weight-600">Devid Taylor</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Jan 25</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Developemnt  Lorem ipsum dolor sit amet</small>
+                                                    
+                                                </div>
+                                            </a>
+                                        </li>
+                                         <li class="border border-top-0 border-left-0 border-right-0">
+                                            <a href="#" class="h6">
+                                                <div class="form-group mb-0 p-3">
+                                                    <input type="checkbox" id="vcheckbox14">
+                                                    <label for="vcheckbox14" class="redial-dark redial-font-weight-600">Devid Taylor</label>
+                                                    <small class='float-right text-muted'><i class="fa fa-paperclip pr-1"></i> Jan 25</small>
+                                                    <small class="d-block pt-2"><i class="fa fa-star pr-2"></i>Developemnt  Lorem ipsum dolor sit amet</small>
+                                                    
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+
+                    </div>
+                   
+                </div>
+
+            </div>
+        </div>
+        <!-- End Chat-->
+        
+        <!-- jQuery -->
+        <script src="{% static 'dist/js/plugins.min.js' %}"></script>       
+        <script src="{% static 'dist/js/common.js' %}"></script>
+    </body>
+
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:58 GMT -->
+</html>

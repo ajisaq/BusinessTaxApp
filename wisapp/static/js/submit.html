@@ -1,0 +1,44 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener('submit', e => {
+   
+  // Store reference to form to make later code easier to read
+  const form = e.target;
+
+  // Post data using the Fetch API
+  var a = new FormData(form);
+
+  $.ajax({
+    url: form.action,
+    method: form.method,
+    data: new FormData(data),
+    beforeSend: ()=>{
+      alert('b4');
+    },
+    complete: ()=>{
+      alert('complete');
+    },
+
+    success: (data)=>{
+      alert(data)
+    },
+
+    error: (error)=>{
+      alert(`error: ${error}`);
+    }
+  });
+
+  // fetch(form.action, {
+  //   method: form.method,
+  //   body: new FormData(form)
+  // });
+
+  // Prevent the default form submit
+  e.preventDefault();
+
+  });
+
+  // swal("Successfully Deleted!", {
+  //   icon: "success",
+  // });
+</script>

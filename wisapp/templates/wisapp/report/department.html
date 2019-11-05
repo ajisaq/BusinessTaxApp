@@ -1,0 +1,62 @@
+{% load static i18n humanize %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/report.min.css' %}">
+  </head>
+  <body>
+    <div class="outer">
+      <div class="logo">
+        <span class="rletter">W</span>
+        <span class="">R</span>
+        <span class="rletter">M</span>
+        <span class="">S</span>
+      </div>
+      <div>
+        <center>
+          <p class="brand">AJISAQ LIMITED</p>
+          <p class="brand-subtitle">Workers Record Management System</p>
+          <p class="report-title">STAFF LIST FOR THE DEPARTMENT OF {{ department|upper }}</p>
+        </center>
+      </div>
+    </div>
+      <div class='wrapper'>
+        <table>
+          <tr class="mdb-color darken-3 headers white-text">
+            <th>#</th>
+             <th>Fullname</th>
+             <th>Picture</th>
+             <th>Phone No.</th>
+             <th>Workplace</th>
+             <th>Department</th>
+             <th>Employed</th>
+             <th>Retirement In</th>
+          </tr>
+          {% for staff in staff_list %}
+            <tr class="row">
+            	<td class="row-data">{{ forloop.counter }}</td>
+            	<td class="row-data">{{ staff.get_full_name }}</td>
+            	<td class="row-data"><img class="passport" src="{{ staff.get_picture }}"/></td>
+            	<td class="row-data">{{ staff.phone_number }}</td>
+              <td class="row-data">{{ staff.place_of_work }}</td>
+              <td class="row-data">{{ staff.department }}</td>
+              <td class="row-data">{{ staff.date_of_employment|naturaltime }}</td>
+              <td class="row-data">{{ staff.date_of_retirement|naturaltime }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="8">
+                No staff is found in this department
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+    <div class="summary">
+      <legend>Summary:</legend>
+        <span>Total number of Staff: <b>{{ staff_list.count }}</b></span><br>
+        <span>Number of retired staff: <b>{{ staff_list.count }}</b></span>
+    </div>
+    <p style="page-break-after: always"/>
+  </body>
+</html>

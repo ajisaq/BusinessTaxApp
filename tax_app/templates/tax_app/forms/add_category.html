@@ -1,0 +1,42 @@
+{% extends "./../base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="row" style="margin-bottom: 25px">
+    <div class="col-12 col-md-12">
+        <div class="card redial-border-light redial-shadow">
+<div class="card-body" style="overflow: visible;">
+                                        <h6 class="header-title pl-3 redial-relative">{% if edit %}Edit{% endif %}{% if not edit %}Add{% endif %} Category</h6>
+                                        <form method="POST" action="{% if edit %}/update/category/{% endif %}{% if not edit %}/add/category/{% endif %}">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Name</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Enter Name"
+                                                        name="name" 
+                                                        value="{{category.name}}">
+                                                        <input type="hidden" name="id" value="{{category.id}}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3"></label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <center>
+                                                            <input type="submit" name="submit" class="btn btn-primary">
+                                                        </center>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+{% endblock main_content %}
