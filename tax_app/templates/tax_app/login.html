@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    {% load staticfiles %}
+<html lang="en">
+    
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:57 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Redial</title>
+        <link rel="icon" href="{% static 'dist/images/favicon.ico' %}" />
+
+        <!--Plugin CSS-->
+        <link href="{% static 'dist/css/plugins.min.css' %}" rel="stylesheet">
+
+        <!--main Css-->
+        <link href="{% static 'dist/css/main.min.css' %}" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- main-content-->
+        <div class="wrapper">
+            <div class="w-100">
+                <div class="row d-flex justify-content-center  pt-5 mt-5">
+                    <div class="col-12 col-xl-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h4 class="mb-0 redial-font-weight-400">Please Sign In</h4>
+                            </div> 
+                            <div class="redial-divider"></div>
+                            <div class="card-body py-4 text-center">
+                                <img src="dist/images/logo-v2.png" alt="" class="img-fluid mb-4">
+                                <form method="post">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <input autofocus="" class="form-control" id="id_username" maxlength="254" name="username" placeholder="Username" type="text" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" id="id_password" name="password" type="password" placeholder="password" required="">
+                                    </div>
+                                    <div class="form-group text-left">
+                                        <input type="checkbox" id="checkbox11">
+                                        <label for="checkbox11">Remember Me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-md redial-rounded-circle-50 btn-block">Login</button>
+                                </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <!-- End main-content-->
+        
+        <!-- jQuery -->
+        <script src="{% static 'dist/js/plugins.min.js' %}"></script>        
+        <script src="{% static 'dist/js/common.js' %}"></script>
+    </body>
+
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:58 GMT -->
+</html>

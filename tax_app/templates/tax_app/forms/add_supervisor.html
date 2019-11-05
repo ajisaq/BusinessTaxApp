@@ -1,0 +1,78 @@
+{% extends "./../base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="row" style="margin-bottom: 25px">
+    <div class="col-12 col-md-12">
+        <div class="card redial-border-light redial-shadow">
+<div class="card-body" style="overflow: visible;">
+    <!-- 
+S/N Employee ID Name    Contact Location 
+-->
+                                        <h6 class="header-title pl-3 redial-relative">{% if edit %}Edit{% endif %}{% if not edit %}Add{% endif %} Supervisor</h6>
+                                        <form method="POST" action="{% if edit %}/update/supervisor/{% endif %}{% if not edit %}/add/supervisor/{% endif %}">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Employee ID</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" name="employee_id" class="form-control" placeholder="Enter Employee ID" value="{{supervisor.emp_no}}" {% if edit %}readonly{% endif %}>
+                                                        <input type="hidden" name="id" value="{{supervisor.pk}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Name</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                                        value="{{supervisor.user.first_name}} {{supervisor.user.last_name}}" {% if edit %}readonly{% endif %}>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Contact</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" name="contact" class="form-control" placeholder="Enter Name" value="{{supervisor.contact}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3">Location</label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <!--
+                                                    <div class="form-group">
+                                                        <input type="text" name="location" class="form-control" placeholder="Enter Name" value="{{supervisor.location}}">
+                                                    </div>-->
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="location">
+                                                        {% for location in locations %}
+                                                            <option {% if location.name == supervisor.location %}selected{% endif %}>{{location.name}}</option>
+                                                        {% endfor %}
+                                                        }
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12 col-sm-2 text-sm-right align-self-center">
+                                                    <label class="redial-font-weight-600 mb-3"></label>
+                                                </div>
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="form-group">
+                                                        <center>
+                                                            <input type="submit" name="submit" class="btn btn-primary">
+                                                        </center>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+{% endblock main_content %}

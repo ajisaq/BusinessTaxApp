@@ -1,0 +1,145 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="row" style="margin-bottom: 25px">
+    <div class="col-12 col-md-12">
+		<div class="card redial-border-light redial-shadow">
+		    <div class="card-body">
+		    	<a href="/add/supervisor/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Location</a>
+		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
+		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
+		    </div>
+		</div>
+	</div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+		<div class="card redial-border-light redial-shadow">
+		    <div class="card-body">
+		<h6 class="header-title pl-3 redial-relative">Supervisor</h6>
+		                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+		                                            <thead>
+		                                                <tr>
+		                                                    <th>S/N</th>
+		                                                    <th>Employee ID</th>
+		                                                    <th>Name</th>
+		                                                    <th>Contact</th>
+		                                                    <th>Location</th>
+		                                                    <th>Payments</th>
+		                                                    <th>Action</th>
+		                                                </tr>
+		                                            </thead>
+		                                            <tfoot>
+		                                                <tr>
+		                                                    <th>S/N</th>
+		                                                    <th>Employee ID</th>
+		                                                    <th>Name</th>
+		                                                    <th>Contact</th>
+		                                                    <th>Location</th>
+		                                                    <th>Payments</th>
+		                                                    <th>Action</th>
+		                                                </tr>
+		                                            </tfoot>
+		                                            <tbody>
+		                                            	<!--
+		                                                <tr>
+		                                                    <td>Tiger Nixon</td>
+		                                                    <td>System Architect</td>
+		                                                    <td>Edinburgh</td>
+		                                                    <td>61</td>
+		                                                    <td>2011/04/25</td>
+		                                                    <td><a class="fa fa-pencil" href="/add/supervisor?q=1" style="margin-right: 10px"/>
+
+		                                                    	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
+		                                                    	<a class="fa fa-exclamation-triangle" href="#" style="margin-right: 10px"/>
+		                                                    <a class="fa fa-check-square" href="javascript:processPayment('1')" style="margin-right: 10px"/></td>
+		                                                </tr>-->
+		                                                {% for supervisor in supervisors %}
+		                                                <tr>
+		                                                    <td>{{ forloop.counter }}.</td>
+		                                                    <td>{{supervisor.emp_no}}</td>
+		                                                    <td>{{supervisor.user.first_name}} {{supervisor.user.last_name}}</td>
+		                                                    <td>{{supervisor.contact}}</td>
+		                                                    <td>{{supervisor.location}}</td>
+		                                                    <td>{% if not supervisor.approved %}Not{% endif%} Approved</td>
+		                                                    <td><a class="fa fa-pencil" href="/add/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
+
+		                                                    	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
+		                                                    	<a class="fa fa-exclamation-triangle" href="/suspend/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
+		                                                    <a class="fa fa-check-square" href="javascript:processPayment('{{supervisor.pk}}')" style="margin-right: 10px"/></td>
+		                                                </tr>
+		                                                {% endfor %}
+		                                            </tbody>
+		                                        </table>
+		</div>
+		</div>
+	</div>
+	</div>	
+	<!-- add Business Category modal-->                     
+                        <div class="modal fade" id="addBusCat" tabindex="-1" role="dialog" aria-labelledby="addBusCatLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addBusCatLabel">Add New Business Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                    <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Location</label>
+                                            <select class="form-control" id="location">
+                                                <option>--Select Location--</option>
+                                                <option>Location 1</option>
+                                                <option>Location 2</option>
+                                                <option>Location 3</option>
+                                            </select>
+                                    </div> 
+                                    <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Business Category/Type</label>
+                                            <input type="text" class="form-control" id="busCat">
+                                    </div>  
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Add Business Category</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- add Business Category modal-->                     
+                        <div class="modal fade" id="approvePayment" tabindex="-1" role="dialog" aria-labelledby="addBusCatLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addBusCatLabel">Approve Payments</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                	<span id="body_approve_payment"></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="$('#approvePayment').modal('dismiss')" class="btn btn-primary">Approve</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                     <script type="text/javascript">
+                     	function processPayment(id) {
+
+                     		$('#body_approve_payment').append("Tiger Nixon with Employee Id #8849 collected $2244, please verify and approve.");
+                     		$('#approvePayment').modal('show');
+                     		location.href="/approve/supervisor?q="+id
+                     	}
+                     </script>
+
+{% endblock main_content %}

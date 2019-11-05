@@ -1,0 +1,8 @@
+{% for staff in staff_list %}
+	<li class="list-group-item">
+		<a href="#">{{ staff.get_full_name }}</a>
+		<small>{{ staff.department }}</small>
+	</li>
+{% empty %}
+	<li class="list-group-item"><small>Nothing found</small></li>
+{% endfor %}

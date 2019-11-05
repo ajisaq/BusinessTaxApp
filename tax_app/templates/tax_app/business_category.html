@@ -1,0 +1,90 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="row" style="margin-bottom: 25px">
+    <div class="col-12 col-md-12">
+		<div class="card redial-border-light redial-shadow">
+		    <div class="card-body">
+		    	<a href="/add/category/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Category</a>
+		    	<button class="btn btn-primary btn-xs" style="margin-right: 10px">Download</button>
+		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
+		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
+		    </div>
+		</div>
+	</div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+		<div class="card redial-border-light redial-shadow">
+		    <div class="card-body">
+		<h6 class="header-title pl-3 redial-relative">Business Category</h6>
+		                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+		                                            <thead>
+		                                                <tr>
+		                                                	<th>S/N</th>
+		                                                    <th>Name</th>
+		                                                    <th>Action</th>
+		                                                </tr>
+		                                            </thead>
+		                                            <tfoot>
+		                                                <tr>
+		                                                	<th>S/N</th>
+		                                                    <th>Name</th>
+		                                                    <th>Action</th>
+		                                                </tr>
+		                                            </tfoot>
+		                                            <tbody>
+		                                            	{% for category in categories %}
+		                                                <tr>
+		                                                	<td>{{ forloop.counter }}.</td>
+		                                                    <td>{{category.name}}</td>
+		                                                    <td>
+		                                                    	<a class="fa fa-pencil" href="/add/category?q={{category.id}}" style="margin-right: 10px"></a>
+		                                                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+		                                                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+		                                                    </td>
+		                                                </tr>
+		                                                {% endfor %}
+		                                            </tbody>
+		                                        </table>
+		</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- add Business Category modal-->                     
+                        <div class="modal fade" id="addBusCat" tabindex="-1" role="dialog" aria-labelledby="addBusCatLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addBusCatLabel">Add New Business Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                    <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Location</label>
+                                            <select class="form-control" id="location">
+                                                <option>--Select Location--</option>
+                                                <option>Location 1</option>
+                                                <option>Location 2</option>
+                                                <option>Location 3</option>
+                                            </select>
+                                    </div> 
+                                    <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Business Category/Type</label>
+                                            <input type="text" class="form-control" id="busCat">
+                                    </div>  
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Add Business Category</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+{% endblock main_content %}
