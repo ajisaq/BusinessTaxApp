@@ -22,6 +22,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #path(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    path('', views.business, name='business'),
     path('login/', LoginView.as_view(template_name= 'tax_app/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page= '/login/'), name='logout'),
     path('location/', views.location, name='location'),

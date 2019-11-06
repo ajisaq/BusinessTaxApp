@@ -1,12 +1,12 @@
 {% extends "./base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block main_content %}
 <div class="row" style="margin-bottom: 25px">
     <div class="col-12 col-md-12">
 		<div class="card redial-border-light redial-shadow">
 		    <div class="card-body">
-		    	<a href="/add/category/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Category</a>
+		    	<a href="{% url 'add_category' %}" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Category</a>
 		    	<button class="btn btn-primary btn-xs" style="margin-right: 10px">Download</button>
 		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
 		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
@@ -40,7 +40,7 @@
 		                                                	<td>{{ forloop.counter }}.</td>
 		                                                    <td>{{category.name}}</td>
 		                                                    <td>
-		                                                    	<a class="fa fa-pencil" href="/add/category?q={{category.id}}" style="margin-right: 10px"></a>
+		                                                    	<a class="fa fa-pencil" href="{% url 'add_category' pk=category.id%}" style="margin-right: 10px"></a>
 		                                                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
 		                                                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
 		                                                    </td>
