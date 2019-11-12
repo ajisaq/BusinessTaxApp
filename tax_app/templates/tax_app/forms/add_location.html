@@ -7,7 +7,7 @@
         <div class="card redial-border-light redial-shadow">
 <div class="card-body" style="overflow: visible;">
                                         <h6 class="header-title pl-3 redial-relative">{% if edit %}Edit{% endif %}{% if not edit %}Add{% endif %} Location</h6>
-                                        <form method="POST" action="{% if edit %}/update/location/{% endif %}{% if not edit %}/add/location/{% endif %}">
+                                        <form method="POST" action="{% if edit %}/tax/update/location/{% endif %}{% if not edit %}/tax/add/location/{% endif %}">
                                             {% csrf_token %}
                                             <div class="row">
                                                 <div class="col-12 col-sm-2 text-sm-right align-self-center">

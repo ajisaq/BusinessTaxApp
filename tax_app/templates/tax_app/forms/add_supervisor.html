@@ -10,7 +10,7 @@
 S/N Employee ID Name    Contact Location 
 -->
                                         <h6 class="header-title pl-3 redial-relative">{% if edit %}Edit{% endif %}{% if not edit %}Add{% endif %} Supervisor</h6>
-                                        <form method="POST" action="{% if edit %}/update/supervisor/{% endif %}{% if not edit %}/add/supervisor/{% endif %}">
+                                        <form method="POST" action="{% if edit %}/tax/update/supervisor/{% endif %}{% if not edit %}/tax/add/supervisor/{% endif %}">
                                             {% csrf_token %}
                                             <div class="row">
                                                 <div class="col-12 col-sm-2 text-sm-right align-self-center">
