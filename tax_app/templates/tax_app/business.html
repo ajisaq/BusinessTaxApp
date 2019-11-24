@@ -2,67 +2,77 @@
 {% load staticfiles %}
 
 {% block main_content %}
-<div class="row" style="margin-bottom: 25px">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		    	<a href="/tax/add/business/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Business</a>
-		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
-		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
-		    </div>
-		</div>
-	</div>
+<!-- Heading -->
+  <div class="card mb-4 wow fadeIn">
+      <!--Card content-->
+      <div class="card-body d-sm-flex justify-content-between">
+
+          <h6 class="mb-2 mb-sm-0 pt-1">
+              <a href="{% url 'home_page' %}">Home Page</a> /
+              <a href="#">Business</a>
+          </h6>
+      </div>
+      <div hidden id="loader" class="progress md-progress primary-color-dark">
+          <div class="indeterminate">
+          </div>
+      </div>
+  </div>
+  <!-- Heading -->
+<div class="card">
+  <h6 class="card-header text-center font-weight-bold text-uppercase py-4">Business List
+  </h6>
+  <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <a href="/tax/add/business/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Business</a>
+            <button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
+            <button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
+        </div>
+    </div>
+    <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>S/N</th>
+                          <th>Business Name</th>
+                          <th>TIN</th>
+                          <th>Location</th>
+                          <th>Category</th>
+                          <th>Payment Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th>S/N</th>
+                          <th>Business Name</th>
+                          <th>TIN</th>
+                          <th>Location</th>
+                          <th>Category</th>
+                          <th>Payment Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                      {% for business in businesses %}
+                      <tr>
+                          <th>{{ forloop.counter }}.</th>
+                            <td>{{business.name}}</td>
+                            <td>{{business.tin}}</td>
+                            <td>{{business.location}}</td>
+                            <td>{{business.category.name}}</td>
+                            <td>{{business.payment_status}}</td>
+                            <td>
+                              <a class="fa fa-pencil" href="/tax/add/business?q={{business.id}}" style="margin-right: 10px"></a>
+                              <a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+                              <a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+                            </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+  </div>
 </div>
-<div class="row">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		<h6 class="header-title pl-3 redial-relative">Business</h6>
-		                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
-		                                            <thead>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Business Name</th>
-		                                                    <th>TIN</th>
-		                                                    <th>Location</th>
-		                                                    <th>Category</th>
-		                                                    <th>Payment Status</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </thead>
-		                                            <tfoot>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Business Name</th>
-		                                                    <th>TIN</th>
-		                                                    <th>Location</th>
-		                                                    <th>Category</th>
-		                                                    <th>Payment Status</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </tfoot>
-		                                            <tbody>
-		                                            	{% for business in businesses %}
-		                                                <tr>
-		                                                	<th>{{ forloop.counter }}.</th>
-		                                                    <td>{{business.name}}</td>
-		                                                    <td>{{business.tin}}</td>
-		                                                    <td>{{business.location}}</td>
-		                                                    <td>{{business.category.name}}</td>
-		                                                    <td>{{business.payment_status}}</td>
-		                                                    <td>
-		                                                    	<a class="fa fa-pencil" href="/tax/add/business?q={{business.id}}" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
-		                                                    </td>
-		                                                </tr>
-		                                                {% endfor %}
-		                                            </tbody>
-		                                        </table>
-		</div>
-		</div>
-	</div>
-	</div>	
+
 	<!-- add Business Category modal-->                     
                         <div class="modal fade" id="addBusCat" tabindex="-1" role="dialog" aria-labelledby="addBusCatLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -86,7 +96,7 @@
                                     </div> 
                                     <div class="form-group">
                                             <label for="message-text" class="col-form-label">Business Category/Type</label>
-                                            <input type="text" class="form-control" id="busCat">
+                                            <input type="text" class="form-control" id="busCat" value="processing">
                                     </div>  
 
                                     </form>
