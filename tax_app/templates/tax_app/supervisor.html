@@ -2,80 +2,91 @@
 {% load staticfiles %}
 
 {% block main_content %}
-<div class="row" style="margin-bottom: 25px">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		    	<a href="/tax/add/supervisor/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Supervisor</a>
+<!-- Heading -->
+  <div class="card mb-4 wow fadeIn">
+      <!--Card content-->
+      <div class="card-body d-sm-flex justify-content-between">
+
+          <h6 class="mb-2 mb-sm-0 pt-1">
+              <a href="{% url 'home_page' %}">Home Page</a> /
+              <a href="#">Supervisor</a>
+          </h6>
+      </div>
+      <div hidden id="loader" class="progress md-progress primary-color-dark">
+          <div class="indeterminate">
+          </div>
+      </div>
+  </div>
+  <!-- Heading -->
+	<!-- 000000000000 -->
+	<div class="card">
+  <h6 class="card-header text-center font-weight-bold text-uppercase py-4">Supervisor List
+  </h6>
+  <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <a href="/tax/add/supervisor/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Supervisor</a>
 		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
 		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
-		    </div>
-		</div>
-	</div>
+        </div>
+    </div>
+    <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Location</th>
+                        <th>Payments</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Location</th>
+                        <th>Payments</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                	<!--
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td><a class="fa fa-pencil" href="/add/supervisor?q=1" style="margin-right: 10px"/>
+
+                        	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
+                        	<a class="fa fa-exclamation-triangle" href="#" style="margin-right: 10px"/>
+                        <a class="fa fa-check-square" href="javascript:processPayment('1')" style="margin-right: 10px"/></td>
+                    </tr>-->
+                    {% for supervisor in supervisors %}
+                    <tr>
+                        <td>{{ forloop.counter }}.</td>
+                        <td>{{supervisor.emp_no}}</td>
+                        <td>{{supervisor.user.first_name}} {{supervisor.user.last_name}}</td>
+                        <td>{{supervisor.contact}}</td>
+                        <td>{{supervisor.location}}</td>
+                        <td>{% if not supervisor.approved %}Not{% endif%} Approved</td>
+                        <td><a class="fa fa-pencil" href="/add/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
+
+                        	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
+                        	<a class="fa fa-exclamation-triangle" href="/suspend/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
+                        <a class="fa fa-check-square" href="javascript:processPayment('{{supervisor.pk}}')" style="margin-right: 10px"/></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+  </div>
 </div>
-<div class="row">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		<h6 class="header-title pl-3 redial-relative">Supervisor</h6>
-		                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
-		                                            <thead>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Employee ID</th>
-		                                                    <th>Name</th>
-		                                                    <th>Contact</th>
-		                                                    <th>Location</th>
-		                                                    <th>Payments</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </thead>
-		                                            <tfoot>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Employee ID</th>
-		                                                    <th>Name</th>
-		                                                    <th>Contact</th>
-		                                                    <th>Location</th>
-		                                                    <th>Payments</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </tfoot>
-		                                            <tbody>
-		                                            	<!--
-		                                                <tr>
-		                                                    <td>Tiger Nixon</td>
-		                                                    <td>System Architect</td>
-		                                                    <td>Edinburgh</td>
-		                                                    <td>61</td>
-		                                                    <td>2011/04/25</td>
-		                                                    <td><a class="fa fa-pencil" href="/add/supervisor?q=1" style="margin-right: 10px"/>
-
-		                                                    	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
-		                                                    	<a class="fa fa-exclamation-triangle" href="#" style="margin-right: 10px"/>
-		                                                    <a class="fa fa-check-square" href="javascript:processPayment('1')" style="margin-right: 10px"/></td>
-		                                                </tr>-->
-		                                                {% for supervisor in supervisors %}
-		                                                <tr>
-		                                                    <td>{{ forloop.counter }}.</td>
-		                                                    <td>{{supervisor.emp_no}}</td>
-		                                                    <td>{{supervisor.user.first_name}} {{supervisor.user.last_name}}</td>
-		                                                    <td>{{supervisor.contact}}</td>
-		                                                    <td>{{supervisor.location}}</td>
-		                                                    <td>{% if not supervisor.approved %}Not{% endif%} Approved</td>
-		                                                    <td><a class="fa fa-pencil" href="/add/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
-
-		                                                    	<a class="fa fa-trash-o" href="#" style="margin-right: 10px"/>
-		                                                    	<a class="fa fa-exclamation-triangle" href="/suspend/supervisor?q={{supervisor.pk}}" style="margin-right: 10px"/>
-		                                                    <a class="fa fa-check-square" href="javascript:processPayment('{{supervisor.pk}}')" style="margin-right: 10px"/></td>
-		                                                </tr>
-		                                                {% endfor %}
-		                                            </tbody>
-		                                        </table>
-		</div>
-		</div>
-	</div>
-	</div>	
+	<!-- 999999999999 -->
 	<!-- add Business Category modal-->                     
                         <div class="modal fade" id="addBusCat" tabindex="-1" role="dialog" aria-labelledby="addBusCatLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

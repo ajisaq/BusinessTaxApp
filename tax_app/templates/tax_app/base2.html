@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:58 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workers Record Management System - WRMS</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  
+    <!--Plugin CSS-->
+    <link href="{% static 'dist/css/plugins.min.css' %}" rel="stylesheet">
+  
+    <!--main Css-->
+    <link href="{% static 'dist/css/main.min.css' %}" rel="stylesheet">
+  
+    <!-- font awesome-->
+    <link rel="stylesheet" href="{% static 'font_awesome/css/font-awesome.min.css' %}">
+  </head>
+    <body>
+        <!-- header-->
+        <div id="header-fix" class="header py-4 py-lg-2 fixed-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-xl-2 align-self-center">
+                        <div class="site-logo">
+                            <a href="{% url 'home_page' %}"><img src="{% static 'dist/images/log.png' %}" alt="LOGO" class="img-fluid" /></a>                       
+                         </div>
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn bg-transparent float-right">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8 align-self-center d-none d-lg-inline-block">
+               
+                        <h2><span style="color: white"><b>Adamawa State Workers Information and Tax Collection System</b></span></h2>
+                    </div>
+                    <div class="col-12 col-lg-2 d-none d-lg-inline-block">
+                        <nav class="navbar navbar-expand-lg p-0">
+                            <ul class="navbar-nav notification ml-auto d-inline-flex">
+                                <li class="nav-item dropdown user-profile align-self-center">
+                                    <a  class="nav-link" data-toggle="dropdown" aria-expanded="false"> 
+                                        <span class="float-right pl-3 text-white"><i class="fa fa-angle-down"></i></span>
+                                        <div class="media">
+                                            <img src="{% static 'dist/images/author.jpg' %}" alt="" class="d-flex mr-3 img-fluid redial-rounded-circle-50" width="45" />
+                                            <div class="media-body align-self-center">
+                                                <p class="mb-2 text-white text-uppercase font-weight-bold">{{user.first_name}} {{user.last_name}}</p>
+                                                <small class="redial-primary-light font-weight-bold text-white">{% if user.profile.is_tax_collector %} Tax Collector {% endif %} {% if user.profile.is_supervisor %} Supervisor {% endif %} {% if user.profile.is_admin %} Admin {% endif %}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu border-bottom-0 rounded-0 py-0">
+                                        <li><a class="dropdown-item py-2" href="/logout/"><i class="fa fa-sign-out pr-2"></i> logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End header-->
+
+        <!-- Main-content Top bar-->
+        <div class="redial-relative mt-80">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-2 align-self-center my-3 my-lg-0">
+                        <h6 class="text-uppercase redial-font-weight-700 redial-light mb-0 pl-2">Menu</h6>
+                    </div>
+                    <div class="col-12 col-md-4 align-self-center">
+                        <div class="float-sm-left float-none mb-4 mb-sm-0">
+                            <ol class="breadcrumb mb-0 bg-transparent redial-light">
+                                <li class="breadcrumb-item"><a href="#" class="redial-light">Home</a></li>
+                                {% for b in bd_cr %}
+                                <li class="breadcrumb-item"><a href="{{b.url}}" class="redial-light">{{b.name}}</a></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="clearfix d-none d-md-inline">
+                            <div class="float-sm-right float-none">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item h4 mb-0 redial-brd-right py-3 px-3 mr-0"><a href="#" class="redial-dark"><span class="lnr lnr-sync"></span></a></li>
+                                
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main-content Top bar-->
+
+        <!-- main-content-->
+        <div class="wrapper">
+            <nav id="sidebar" class="card redial-border-light px-2 mb-4">
+                <div class="sidebar-scrollarea">
+                    <ul class="metismenu list-unstyled mb-0" id="menu">
+                        <li><a href="{% url  'home_page' %}" class="list-group-item {% if request.META.PATH_INFO == '/' %} active {% endif %} waves-effect">
+                            <i class="fas fa-chart-pie mr-3"></i>Dashboard
+                          </a>
+                        </li>
+                        <li> <a href="{% url 'staff' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/staff/' %} active {% endif %}
+                            ">
+                              <i class="fas fa-user mr-3"></i>Staff</a>
+                        </li>
+                        <li><a href="{% url 'departments' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/departments/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Departments</a>
+                        </li>
+                        <li><hr></li>
+                        <li><a href="{% url 'business' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/tax/business/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Businesses</a>
+                        </li>
+                        
+                        {% if user.profile.is_supervisor or user.profile.is_admin %}
+                        <li><a href="{% url 'location' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/tax/location/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Locations</a>
+                        </li>
+                        <li><a href="{% url 'supervisor' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/tax/supervisor/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Supervisors</a>
+                        </li>
+                        <li><a href="{% url 'business_category' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/tax/business/category/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Business Categories</a>
+                        </li>
+                        
+                        {% endif %}
+                        {% if user.profile.is_admin %}
+                        <li><a href="{% url 'administrator' %}" class="list-group-item list-group-item-action waves-effect
+                            {% if request.META.PATH_INFO == '/tax/administrator/' %} active {% endif %}
+                            "><i class="fas fa-table mr-3"></i>Admins</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            <div id="content">
+                <div class="row">
+                    <div class="col-12 col-sm-12">
+                        
+                                
+                            {% block main_content %}
+
+                            {% endblock main_content %}
+                               
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <!-- End main-content-->
+        
+        <!-- jQuery -->
+        <script src="{% static 'dist/js/plugins.min.js' %}"></script>       
+        <script src="{% static 'dist/js/common.js' %}"></script>
+          <!--Main layout-->
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+    <style>
+        .search {
+          background: white url("{% static 'img/lightbox/preloader.gif' %}") right center no-repeat;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        $( function() {
+          $(".ui-widget").hide();
+          $("#search").on('keyup', function(){
+            var q = $(this).val();
+            $(this).addClass('search');
+            $.ajax({
+              url: "{% url 'staff_search' %}",
+      
+              data: {
+                'q': q,
+              },
+      
+              beforeSend: function(){
+                $(this).addClass('search');
+              },
+      
+              complete: function(){
+                $(this).removeClass('search');
+              },
+      
+              success: function(data){
+                $(".searchr").html(data);
+              },
+      
+              error: function(error){
+                console.log(error);
+              }
+            });
+      
+            $(".ui-widget").show();
+          });
+        });
+        </script>
+    </body>
+
+<!-- Mirrored from psd2allconversion.com/templates/themeforest/html/redial/style1/default/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 13:13:58 GMT -->
+</html>

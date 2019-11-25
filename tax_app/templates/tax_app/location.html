@@ -2,63 +2,74 @@
 {% load staticfiles %}
 
 {% block main_content %}
-<div class="row" style="margin-bottom: 25px">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		    	<a href="/tax/add/location/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Location</a>
+<!-- Heading -->
+  <div class="card mb-4 wow fadeIn">
+      <!--Card content-->
+      <div class="card-body d-sm-flex justify-content-between">
+
+          <h6 class="mb-2 mb-sm-0 pt-1">
+              <a href="{% url 'home_page' %}">Home Page</a> /
+              <a href="#">Location</a>
+          </h6>
+      </div>
+      <div hidden id="loader" class="progress md-progress primary-color-dark">
+          <div class="indeterminate">
+          </div>
+      </div>
+  </div>
+  <!-- Heading -->
+<!-- 000000000000000000 -->
+<div class="card">
+  <h6 class="card-header text-center font-weight-bold text-uppercase py-4">Location List
+  </h6>
+  <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <a href="/tax/add/location/" class="btn btn-primary btn-xs" style="margin-right: 10px">Add Location</a>
 		    	<button class="btn btn-success btn-xs" style="margin-right: -3px">Active</button>
 		    	<button class="btn btn-danger btn-xs"  style="margin-right: 10px">Inactive</button>
-		    </div>
-		</div>
-	</div>
+        </div>
+    </div>
+    <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>S/N</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+            	<!--
+                <tr>
+                    <td>1.</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td><a class="fa fa-pencil" href="/add/location?q=1" style="margin-right: 10px"></a>
+                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a></td>
+                </tr>-->
+                {% for location in locations %}
+                <tr>
+                    <td>{{ forloop.counter }}.</td>
+                    <td>{{location.code}}</td>
+                    <td>{{location.name}}</td>
+                    <td><a class="fa fa-pencil" href="/tax/add/location?q={{location.pk}}" style="margin-right: 10px"></a>
+                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
+                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+  </div>
 </div>
-<div class="row">
-    <div class="col-12 col-md-12">
-		<div class="card redial-border-light redial-shadow">
-		    <div class="card-body">
-		<h6 class="header-title pl-3 redial-relative">Locations</h6>
-		                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
-		                                            <thead>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Code</th>
-		                                                    <th>Name</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </thead>
-		                                            <tfoot>
-		                                                <tr>
-		                                                    <th>S/N</th>
-		                                                    <th>Code</th>
-		                                                    <th>Name</th>
-		                                                    <th>Action</th>
-		                                                </tr>
-		                                            </tfoot>
-		                                            <tbody>
-		                                            	<!--
-		                                                <tr>
-		                                                    <td>1.</td>
-		                                                    <td>System Architect</td>
-		                                                    <td>Edinburgh</td>
-		                                                    <td><a class="fa fa-pencil" href="/add/location?q=1" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a></td>
-		                                                </tr>-->
-		                                                {% for location in locations %}
-		                                                <tr>
-		                                                    <td>{{ forloop.counter }}.</td>
-		                                                    <td>{{location.code}}</td>
-		                                                    <td>{{location.name}}</td>
-		                                                    <td><a class="fa fa-pencil" href="/tax/add/location?q={{location.pk}}" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-trash-o" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a>
-		                                                    	<a class="fa fa-exclamation-triangle" href="" data-toggle="modal" data-target="#addBusCat" style="margin-right: 10px"></a></td>
-		                                                </tr>
-		                                                {% endfor %}
-		                                            </tbody>
-		                                        </table>
-		</div>
-		</div>
-	</div>
-	</div>	
+
 {% endblock main_content %}
